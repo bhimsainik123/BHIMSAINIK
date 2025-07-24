@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Great THUG</title>
+
+    <link rel="icon" type="image/png" href="cursor.gif">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: url("public/cursor.gif") 8 8, auto;
+        }
+
+        video#background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            max-height: 100vh;
+        }
+
+        .overlay {
+            position: fixed;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 20px;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(226, 53, 53, 0.7);
+        }
+
+        h1 {
+            font-family: 'DM Serif Text', serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        p {
+            font-family: 'DM Serif Text', serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 5px rgba(226, 53, 53, 0.7);
+        }
+
+        .socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .socials a {
+            color: white;
+            font-size: 1.8rem;
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .socials a:hover {
+            transform: translateY(-8px) scale(1.1);
+            color: #ff4d4d;
+        }
+
+        .intro {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Text', serif;
+            z-index: 2000;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .intro-text {
+            font-size: 1.8rem;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .intro.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        #sound-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #sound-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                overflow: auto;
+            }
+
+            h1 {
+                font-size: 8vw;
+            }
+
+            p {
+                font-size: 4.5vw;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .socials {
+                gap: 15px;
+            }
+
+            .socials a {
+                font-size: 1.5rem;
+            }
+
+            .intro-text {
+                font-size: 5vw;
+            }
+
+            #sound-toggle {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <video id="background" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <audio id="audio" loop>
+        <source src="audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="overlay"></div>
+
+    <div class="content" id="main-content">
+        <img src="avatar.png" alt="Profile Avatar" class="avatar" />
+        <h1 id="main-title"></h1>
+        <p id="citation-text"></p>
+        <div class="socials">
+            <a href="https://github.com/paulafredo" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.tiktok.com/@thug.4ff" target="_blank" rel="noopener noreferrer" aria-label="TikTok Profile">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.youtube.com/@thug.4ff" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://discord.gg/BhQk4q3JGJ" target="_blank" rel="noopener noreferrer" aria-label="Discord Server">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://t.me/thug4ff" target="_blank" rel="noopener noreferrer" aria-label="Telegram Channel">
+                <i class="fab fa-telegram"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="intro" id="intro">
+        <div class="intro-text">Click to enter</div>
+    </div>
+
+    <button id="sound-toggle" aria-label="Toggle sound">
+        <i class="fas fa-volume-up"></i>
+    </button>
+
+    <script>
+        const audio = document.getElementById("audio");
+        const toggleBtn = document.getElementById("sound-toggle");
+        const icon = toggleBtn.querySelector("i");
+        const intro = document.getElementById("intro");
+        const video = document.getElementById("background");
+
+        const titleElement = document.getElementById("main-title");
+        const citationElement = document.getElementById("citation-text");
+
+        const originalTitleText = "Great THUG";
+        const originalCitationText = "I don't seek power - I am power.";
+
+        let isPlaying = false;
+
+        function playMedia(mediaElement) {
+            mediaElement.play().catch(err => {
+                console.warn(`Playback blocked:`, err);
+            });
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            if (isPlaying) {
+                audio.pause();
+                icon.className = "fas fa-volume-mute";
+            } else {
+                playMedia(audio);
+                icon.className = "fas fa-volume-up";
+            }
+            isPlaying = !isPlaying;
+        });
+
+        intro.addEventListener("click", () => {
+            intro.classList.add("fade-out");
+
+            audio.volume = 0.05;
+            playMedia(audio);
+            playMedia(video);
+
+            isPlaying = true;
+            icon.className = "fas fa-volume-up";
+
+            titleElement.textContent = originalTitleText;
+            citationElement.textContent = originalCitationText;
+
+            // Lance l'animation du titre dans l'onglet
+            animateTitle();
+        });
+
+        // Animation du titre dans l'onglet
+        const titleFrames = [
+            "G", "Gr", "Gre", "Grea", "Great", "Great ",
+            "Great T", "Great TH", "Great THU", "Great THUG",
+            "Great THUG", "Great THUG", "Great THUG"
+        ];
+        let titleIndex = 0;
+
+        function animateTitle() {
+            document.title = titleFrames[titleIndex];
+            titleIndex = (titleIndex + 1) % titleFrames.length;
+            setTimeout(animateTitle, 200); // Vitesse d'animation
+        }
+    </script>
+</body>
+</html>
