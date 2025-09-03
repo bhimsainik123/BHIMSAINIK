@@ -17,11 +17,11 @@ const SITE_CONFIG = {
     
     // Liens sociaux
     socialLinks: {
-        github: "https://github.com/paulafredo",
-        tiktok: "https://www.tiktok.com/@thug.4ff",
-        youtube: "https://www.youtube.com/@thug.4ff",
-        discord: "https://discord.gg/BhQk4q3JGJ",
-        telegram: "https://t.me/thug4ff"
+        instagram: "https://www.instagram.com/sumedh_gacche__?utm_source=qr",
+       
+       
+        discord: " https://discord.gg/rEcsTwUBsV",
+       
     },
     
     // Configuration audio
@@ -130,7 +130,7 @@ function applyConfig() {
 // Fonction pour mettre à jour les liens sociaux
 function updateSocialLinks() {
     const socialLinks = {
-        'github': document.querySelector('a[href*="github.com"]'),
+        'instagram': document.querySelector('a[href*="instagram.com"]'),
         'tiktok': document.querySelector('a[href*="tiktok.com"]'),
         'youtube': document.querySelector('a[href*="youtube.com"]'),
         'discord': document.querySelector('a[href*="discord.gg"]'),
