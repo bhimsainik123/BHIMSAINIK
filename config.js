@@ -3,7 +3,7 @@
 
 const SITE_CONFIG = {
     // Informations personnelles
-    title: "Great THUG",
+    title: "Bhim Sainik",
     citation: "I don't seek power - I am power.",
     
     // Couleurs principales (format hexadécimal)
@@ -16,12 +16,12 @@ const SITE_CONFIG = {
     },
     
     // Liens sociaux
-    socialLinks: {
-        instagram: "https://www.instagram.com/sumedh_gacche__?utm_source=qr",
-       
-       
-        discord: " https://discord.gg/rEcsTwUBsV",
-       
+     socialLinks: {
+        github: "https://github.com/bhimsainik123",
+        instagram: "https://www.instagram.com/sumedh_gacche__",
+        youtube: "null",
+        discord: "https://discord.gg/rEcsTwUBsV",
+        telegram: "https://t.me/Sumedh_302"     
     },
     
     // Configuration audio
